@@ -26,18 +26,20 @@ struct ContentView: View {
                             Circle()
                                 .foregroundColor(.red)
                                 .opacity(0.5)
-                                .frame(width: geometry.size.width / 3 - 15 ,
+                                .frame(width: geometry.size.width / 3 - 15,
                                        height: geometry.size.width / 3 - 15)
                             
-                            Image(systemName: "xmark")
+                            Image(systemName: moves[index]?.indicator ?? "")
                                 .resizable()
                                 .frame(width: geometry.size.width/10,
                                        height: geometry.size.width/10)
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
-                            moves[index] = Move(player: isHumansTurn ? .human: .computer, boardIndex: index)
-                            isHumansTurn.toggle() //isHumansTurn = !isHumansTurn
+                            if !moves.contains(where: {$0?.boardIndex == index}) { // moves[index]?.indicator == nil {
+                                moves[index] = Move(player: isHumansTurn ? .human: .computer, boardIndex: index)
+                                isHumansTurn.toggle() // isHumansTurn = !isHumansTurn
+                            }
                         }
                     }
                 }
