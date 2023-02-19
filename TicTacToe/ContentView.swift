@@ -36,10 +36,10 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
-                            if isSquareOccupied(in: moves, forIndex: index) { // moves[index]?.indicator == nil {
-                                moves[index] = Move(player: isHumansTurn ? .human: .computer, boardIndex: index)
-                                isHumansTurn.toggle() // isHumansTurn = !isHumansTurn
-                            }
+                            if isSquareOccupied(in: moves, forIndex: index) { return }
+                            moves[index] = Move(player: isHumansTurn ? .human: .computer, boardIndex: index)
+                            isHumansTurn.toggle() // isHumansTurn = !isHumansTurn
+                            
                         }
                     }
                 }
